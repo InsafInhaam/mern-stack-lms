@@ -13,7 +13,7 @@ import {
   sendToken,
 } from "../utils/jwt";
 import { redis } from "../utils/redis";
-import { getuserById } from "../services/user.service";
+import { getAllUsersService, getuserById } from "../services/user.service";
 import cloudinary from "cloudinary";
 
 interface IRegistrationBody {
@@ -399,3 +399,14 @@ export const updateProfilePicture = CatchAsyncError(
     }
   }
 );
+
+// get all users --- only for admin
+export const getAllUsers = CatchAsyncError(
+  async (req: Request,res: Response, next: NextFunction) =>{
+    try {
+      getAllUsersService(res);
+    } catch (error:any) {
+      return next(new ErrorHandler(error.message,400));
+    }
+  }
+)

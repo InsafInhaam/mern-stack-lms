@@ -22,5 +22,6 @@ courseRouter.put("/add-question", isAutheticated, addQuestion);
 courseRouter.put("/add-answer", isAutheticated, addAnwser);
 courseRouter.put("/add-review/:id", isAutheticated, addReview);
 courseRouter.put("/add-reply/:id", isAutheticated, authorizeRoles("admin"), addReplyToReview);
+courseRouter.put("/get-courses", isAutheticated, authorizeRoles("admin"), getAllCourses);
 
 export default courseRouter;
